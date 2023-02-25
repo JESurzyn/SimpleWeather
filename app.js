@@ -1,8 +1,12 @@
 const express = require('express')
 const ejsMate = require('ejs-mate')
+const {apiKey} = require('./config')
 
 //defining the server
 const app = express();
+
+//testing config
+// console.log(apiKey)
 
 //defining the view engine
 app.engine('ejs', ejsMate);
