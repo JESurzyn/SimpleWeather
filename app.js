@@ -17,6 +17,7 @@ app.set('views', 'views/')
 
 //middleware
 app.use(express.urlencoded({extended:true}))
+app.use(express.static('scripts'));
 app.use((req,res,next) => {
     res.locals.data = {};
     next();

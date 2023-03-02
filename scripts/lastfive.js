@@ -12,3 +12,12 @@
 // - create another function or code that reads what's in local storage 
 //     - display the results as buttons or hrefs and (maybe with the icon as well and the date)
 //     - make the buttons clickable to make a request from api
+//won't load from file
+
+const weatherSearch = document.querySelector('#weatherSearch');
+
+const testButton = () => {
+    console.log('clicked!!!')
+}
+
+weatherSearch.addEventListener('click', testButton)
