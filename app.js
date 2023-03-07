@@ -50,22 +50,26 @@ app.get('/', (req, res) => {
 })
 
 app.get('/search', async (req, res) => {
-    const {location} = req.query
-    const weatherData = await getWeather(location);
-    // console.log(weatherData);
-    const {
-        current: {
-            temp_f,
-            condition:{
-                text,
-                icon
-            },
-            humidity,
-            precip_in,
-            cloud
-        }
-    } = weatherData;
-    const data = {location, temp_f, text, icon, humidity, precip_in, cloud}
-    res.render('home', {data})
+    try {
+        const {location} = req.query
+        const weatherData = await getWeather(location);
+        // console.log(weatherData);
+        const {
+            current: {
+                temp_f,
+                condition:{
+                    text,
+                    icon
+                },
+                humidity,
+                precip_in,
+                cloud
+            }
+        } = weatherData;
+        const data = {location, temp_f, text, icon, humidity, precip_in, cloud}
+        res.render('home', {data})
+    } catch (e) {
+        console.log('failed', e)
+    }
 })
 
