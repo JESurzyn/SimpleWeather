@@ -2,21 +2,26 @@ const express = require('express')
 const ejsMate = require('ejs-mate')
 const {apiKey} = require('./config')
 const axios = require('axios')
+const path = require('path')
 
 //defining the server
 const app = express();
 
 //testing config
 // console.log(apiKey)
+app.use(express.static(path.join(__dirname, '/scripts')))
 
 //defining the view engine
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs')
 //setting view location
-app.set('views', 'views/')
+app.set('views', path.join(__dirname,'/views'))
+
 
 //middleware
 app.use(express.urlencoded({extended:true}))
+
+
 app.use((req,res,next) => {
     res.locals.data = {};
     next();
