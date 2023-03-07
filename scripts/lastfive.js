@@ -50,6 +50,9 @@ const addLocation = () => {
             }
             localStorage.setItem(5,locVal);
         };    
+    } else {
+        key = localStorage.length + 1
+        localStorage.setItem(key,locVal);
     }
 }
 
