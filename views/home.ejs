@@ -13,6 +13,12 @@
 <body class="d-flex flex-column vh-100">
     <div class="container pt-3" id = "mainContainer">
         <div class="container" id = "search">
+            <% if(notFound && notFound.length) {%>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= notFound %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %> 
             <h1>Find Today's Weather</h1>
             <form action="/search" method="GET">
                 <label for="location">Input City</label>
