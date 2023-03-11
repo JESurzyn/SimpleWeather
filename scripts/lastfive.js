@@ -21,39 +21,40 @@ const mainContainer = document.getElementById('mainContainer')
 
 //adding to local storage
 const addLocation = () => {
-    const locVal = locationInput.value
-    let key = 0
-    if (localStorage.length > 0) {
-        for (let i = 1; i< localStorage.length+1; i++) {
-            if (locVal === localStorage.getItem(i)) {
-                return
-            }
-        };
-        if (localStorage.length < 5) {
-            key = localStorage.length + 1
-            localStorage.setItem(key,locVal)
+        const locVal = locationInput.value
+        let key = 0
+        if (localStorage.length > 0) {
+            for (let i = 1; i< localStorage.length+1; i++) {
+                if (locVal === localStorage.getItem(i)) {
+                    return
+                }
+            };
+            if (localStorage.length < 5) {
+                key = localStorage.length + 1
+                localStorage.setItem(key,locVal)
+            } else {
+                //removes earliest item
+                localStorage.removeItem(1)
+                //relabel keys
+                let keys = Object.keys(localStorage);
+                let tempObj = {}
+                for (let key of keys) {
+                    tempObj[key-1] = localStorage.getItem(key)
+                }
+                localStorage.clear();
+                keys = Object.keys(tempObj);
+                let tempVal = ''
+                for (let key of keys) {
+                    tempVal = tempObj[key];
+                    localStorage.setItem(key,tempVal)
+                }
+                localStorage.setItem(5,locVal);
+            };    
         } else {
-            //removes earliest item
-            localStorage.removeItem(1)
-            //relabel keys
-            let keys = Object.keys(localStorage);
-            let tempObj = {}
-            for (let key of keys) {
-                tempObj[key-1] = localStorage.getItem(key)
-            }
-            localStorage.clear();
-            keys = Object.keys(tempObj);
-            let tempVal = ''
-            for (let key of keys) {
-                tempVal = tempObj[key];
-                localStorage.setItem(key,tempVal)
-            }
-            localStorage.setItem(5,locVal);
-        };    
-    } else {
-        key = localStorage.length + 1
-        localStorage.setItem(key,locVal);
-    }
+            key = localStorage.length + 1
+            localStorage.setItem(key,locVal);
+        }
+        console.log(notFound)
 }
 
 
