@@ -9,6 +9,8 @@
 //         - if less 5 in local storage keep adding
 //         - if 5 or more, kick out the last entry
 
+// const { default: axios } = require("axios");
+
 // - create another function or code that reads what's in local storage 
 //     - display the results as buttons or hrefs and (maybe with the icon as well and the date)
 //     - make the buttons clickable to make a request from api
@@ -20,8 +22,11 @@ const search = document.getElementById('search')
 const mainContainer = document.getElementById('mainContainer')
 
 //adding to local storage
-const addLocation = () => {
+const addLocation = async () => {
         const locVal = locationInput.value
+        const config = {params: {location:locVal }}
+        const res = await axios.get('http://localhost:3000/search', config);
+        // console.log(res.status)
         let key = 0
         if (localStorage.length > 0) {
             for (let i = 1; i< localStorage.length+1; i++) {
@@ -54,7 +59,6 @@ const addLocation = () => {
             key = localStorage.length + 1
             localStorage.setItem(key,locVal);
         }
-        console.log(notFound)
 }
 
 

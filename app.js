@@ -76,12 +76,13 @@ app.get('/search', async (req, res, next) => {
             }
         } = weatherData;
         const data = {location, temp_f, text, icon, humidity, precip_in, cloud}
-        res.render('home', {data})
+        res.status(200).render('home', {data})
     } catch (e) {
         // console.log(e)
         if(e.response.status === 400) {
             req.flash('notFound', "Something went wrong, maybe the location you entered doesn't exist?");
-            res.redirect('/')
+            res.status(e.response.status).render('home')
+            // res.redirect('/')
         } else {
             next(e)
         }
