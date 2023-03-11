@@ -62,7 +62,7 @@ app.get('/search', async (req, res, next) => {
     try {
         const {location} = req.query
         const weatherData = await getWeather(location);
-        console.log(weatherData);
+        // console.log(weatherData);
         const {
             current: {
                 temp_f,
